@@ -1,4 +1,6 @@
-﻿// await SyllableWriter.Run();
+﻿// To re-generate the word-syllable output, uncomment and run the following line:
+
+// await SyllableWriter.Run();
 
 var adjectiveFileLines = await File.ReadAllLinesAsync("./data/adjectives-and-syllable-count.csv");
 var nounFileLines = await File.ReadAllLinesAsync("./data/adjectives-and-syllable-count.csv");
@@ -12,12 +14,10 @@ string[] adjectives = LimitWordListBySyllableCount(
 );
 string[] nouns = LimitWordListBySyllableCount(nounFileLines, minSyllables: 1, maxSyllables: 1);
 
-// Start the CLI
 Console.WriteLine(
     "Directions: Press \"Enter\" to advance to the next item, or any other key to stop.\n"
 );
 bool continuePrompt = true;
-
 do
 {
     PrintRandomCombination(adjectives, nouns);
