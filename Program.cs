@@ -1,4 +1,4 @@
-// To re-generate the word-syllable output from the .txt file, uncomment and run the following line:
+﻿// To re-generate the word-syllable output from the .txt file, uncomment and run the following line:
 
 // await SyllableWriter.WriteToCSV();
 
@@ -36,12 +36,14 @@ static void PrintRandomCombination(
     int maxUsernameLength
 )
 {
+    GenerateNewUsername:
     string username = String.Format(
         "{0}{1}",
         firstWordList[new Random().Next(0, firstWordList.Count() - 1)],
         secondWordList[new Random().Next(0, secondWordList.Count() - 1)]
     );
-
+    if (username.Length > maxUsernameLength)
+        goto GenerateNewUsername;
     Console.WriteLine(username);
 }
 
