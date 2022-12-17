@@ -29,6 +29,11 @@ public static class StringExtensions
             && !word.EndsWith("le")
         )
             count--;
+
+        // Words cannot have zero or fewer syllables, so in the event the algorithm removes all syllables it should default to 1
+        if (count <= 0)
+            count = 1;
+
         return count;
     }
 }
