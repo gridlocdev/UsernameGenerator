@@ -4,7 +4,7 @@ public class SyllableWriter
 {
     public static async Task WriteToCSV()
     {
-        string[] adjectives = await File.ReadAllLinesAsync("./data/english-adjectives.txt");
+        Console.WriteLine("Writing words.txt file to words-and-syllables.txt...");
         string[] words = await File.ReadAllLinesAsync("./data/words.txt");
 
         await Task.WhenAll();
@@ -20,12 +20,6 @@ public class SyllableWriter
         }
         File.WriteAllText("./data/words-and-syllables.csv", csv.ToString());
 
-        for (int i = 0; i < nouns.Length; i++)
-        {
-            csv.AppendLine(
-                String.Format("{0},{1}", nouns[i].ToTitleCase(), nouns[i].GetSyllableCount())
-            );
-        }
-        File.WriteAllText("./data/nouns-and-syllable-count.csv", csv.ToString());
+        Console.WriteLine("Finished writing syllable csv file successfully!");
     }
 }
