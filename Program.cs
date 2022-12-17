@@ -1,18 +1,22 @@
-﻿// To re-generate the word-syllable output, uncomment and run the following line:
+// To re-generate the word-syllable output from the .txt file, uncomment and run the following line:
 
-// await SyllableWriter.Run();
+// await SyllableWriter.WriteToCSV();
 
-var adjectiveFileLines = await File.ReadAllLinesAsync("./data/adjectives-and-syllable-count.csv");
-var nounFileLines = await File.ReadAllLinesAsync("./data/adjectives-and-syllable-count.csv");
+var wordFileLines = await File.ReadAllLinesAsync("./data/words-and-syllables.csv");
+byte maxUsernameLength = 9;
 
 await Task.WhenAll();
 
-string[] adjectives = LimitWordListBySyllableCount(
-    adjectiveFileLines,
+string[] firstWordList = LimitWordListBySyllableCount(
+    wordFileLines,
     minSyllables: 1,
     maxSyllables: 1
 );
-string[] nouns = LimitWordListBySyllableCount(nounFileLines, minSyllables: 1, maxSyllables: 1);
+string[] secondWordList = LimitWordListBySyllableCount(
+    wordFileLines,
+    minSyllables: 1,
+    maxSyllables: 1
+);
 
 Console.WriteLine(
     "Directions: Press \"Enter\" to advance to the next item, or any other key to stop.\n"
@@ -20,18 +24,22 @@ Console.WriteLine(
 bool continuePrompt = true;
 do
 {
-    PrintRandomCombination(adjectives, nouns);
-    var key = Console.ReadKey().Key;
+    PrintRandomCombination(firstWordList, secondWordList, maxUsernameLength);
+    var key = Console.ReadKey(true).Key;
     if (key != ConsoleKey.Enter)
         continuePrompt = false;
 } while (continuePrompt == true);
 
-static void PrintRandomCombination(string[] adjectives, string[] nouns)
+static void PrintRandomCombination(
+    string[] firstWordList,
+    string[] secondWordList,
+    int maxUsernameLength
+)
 {
     string username = String.Format(
         "{0}{1}",
-        adjectives[new Random().Next(0, adjectives.Count() - 1)],
-        nouns[new Random().Next(0, nouns.Count() - 1)]
+        firstWordList[new Random().Next(0, firstWordList.Count() - 1)],
+        secondWordList[new Random().Next(0, secondWordList.Count() - 1)]
     );
 
     Console.WriteLine(username);
