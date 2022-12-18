@@ -1,4 +1,5 @@
 using System.Text;
+using UsernameGenerator.Core;
 
 public class SyllableWriter
 {

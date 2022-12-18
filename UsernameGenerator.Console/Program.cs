@@ -1,6 +1,6 @@
 ﻿// To re-generate the word-syllable output from the .txt file, uncomment and run the following line:
 
-// await SyllableWriter.WriteToCSV();
+await SyllableWriter.WriteToCSV();
 
 var wordFileLines = await File.ReadAllLinesAsync("./data/words-and-syllables.csv");
 byte maxUsernameLength = 9;

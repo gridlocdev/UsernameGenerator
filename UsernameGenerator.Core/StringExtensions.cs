@@ -1,5 +1,7 @@
 using System.Globalization;
 
+namespace UsernameGenerator.Core;
+
 public static class StringExtensions
 {
     public static string ToTitleCase(this string word) =>
