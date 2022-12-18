@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>UsernameGenerator</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include=".idea\.idea.UsernameGenerator\.idea\.gitignore" />
+    <Content Include=".idea\.idea.UsernameGenerator\.idea\encodings.xml" />
+    <Content Include=".idea\.idea.UsernameGenerator\.idea\indexLayout.xml" />
+    <Content Include=".idea\.idea.UsernameGenerator\.idea\projectSettingsUpdater.xml" />
+    <Content Include=".idea\.idea.UsernameGenerator\.idea\vcs.xml" />
+    <Content Include=".idea\.idea.UsernameGenerator\.idea\workspace.xml" />
+    <None Remove="data\words.txt" />
+    <Content Include="data\words.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Include="obj\Debug\net6.0\UsernameGenerator.GeneratedMSBuildEditorConfig.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\net6.0\ref" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="data\words-and-syllables.csv" />
+    <Content Include="data\words-and-syllables.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
