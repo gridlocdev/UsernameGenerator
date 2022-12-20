@@ -9,33 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\UsernameGenerator.Core\data\words-and-syllables.csv">
-      <Link>data\words-and-syllables.csv</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\UsernameGenerator.Core\data\words.txt">
-      <Link>data\words.txt</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include=".idea\.idea.UsernameGenerator\.idea\.gitignore" />
     <Content Include=".idea\.idea.UsernameGenerator\.idea\encodings.xml" />
     <Content Include=".idea\.idea.UsernameGenerator\.idea\indexLayout.xml" />
     <Content Include=".idea\.idea.UsernameGenerator\.idea\projectSettingsUpdater.xml" />
     <Content Include=".idea\.idea.UsernameGenerator\.idea\vcs.xml" />
     <Content Include=".idea\.idea.UsernameGenerator\.idea\workspace.xml" />
-    <None Remove="data\words.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EditorConfigFiles Include="obj\Debug\net6.0\UsernameGenerator.GeneratedMSBuildEditorConfig.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="bin\Debug\net6.0\ref" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="data\words-and-syllables.csv" />
   </ItemGroup>
 
   <ItemGroup>
