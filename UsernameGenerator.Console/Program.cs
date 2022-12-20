@@ -1,60 +1,22 @@
-﻿// To re-generate the word-syllable output from the .txt file, uncomment and run the following line:
+﻿using UsernameGenerator.Core;
 
-using UsernameGenerator.Core;
-
-await SyllableWriter.WriteToCSV();
-
-var wordFileLines = await File.ReadAllLinesAsync("./data/words-and-syllables.csv");
-byte maxUsernameLength = 9;
-
-await Task.WhenAll();
-
-string[] firstWordList = LimitWordListBySyllableCount(
-    wordFileLines,
-    minSyllables: 1,
-    maxSyllables: 1
-);
-string[] secondWordList = LimitWordListBySyllableCount(
-    wordFileLines,
-    minSyllables: 1,
-    maxSyllables: 1
-);
+var service = new UsernameGeneratorService(
+    firstWordSyllableMinCount: 1,
+    firstWordSyllableMaxCount: 1,
+    secondWordSyllableMinCount: 1,
+    secondWordSyllableMaxCount: 1,
+    maxUsernameLength: 9
+    );
 
 Console.WriteLine(
     "Directions: Press \"Enter\" to advance to the next item, or any other key to stop.\n"
 );
-bool continuePrompt = true;
+var shouldContinue = true;
 do
 {
-    PrintRandomCombination(maxUsernameLength);
+    string username = UsernameGeneratorService.GetNewCombination();
+    Console.WriteLine(username);
     var key = Console.ReadKey(true).Key;
     if (key != ConsoleKey.Enter)
-        continuePrompt = false;
-} while (continuePrompt == true);
-
-static void PrintRandomCombination(
-    int maxUsernameLength
-)
-{
-    GenerateNewUsername:
-    string username = UsernameGeneratorService.GetNewCombination(maxUsernameLength);
-    if (username.Length > maxUsernameLength)
-        goto GenerateNewUsername;
-    Console.WriteLine(username);
-}
-
-static string[] LimitWordListBySyllableCount(
-    string[] commaDelimitedWordAndSyllableArray,
-    int minSyllables,
-    int maxSyllables
-)
-{
-    return commaDelimitedWordAndSyllableArray
-        .Where(
-            x =>
-                int.Parse(x.Split(",")[1]) >= minSyllables
-                && int.Parse(x.Split(",")[1]) <= maxSyllables
-        )
-        .Select(x => x.Split(",")[0].ToString())
-        .ToArray<string>();
-}
+        shouldContinue = false;
+} while (shouldContinue == true);
