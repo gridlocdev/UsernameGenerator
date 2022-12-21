@@ -1,15 +1,13 @@
+using System.Diagnostics;
+
 namespace UsernameGenerator.Core;
 
 public class UsernameGeneratorService
 {
-    private readonly byte _firstWordSyllableMinCount;
-    private readonly byte _firstWordSyllableMaxCount;
-    private readonly byte _secondWordSyllableMinCount;
-    private readonly byte _secondWordSyllableMaxCount;
     private static byte _maxUsernameLength;
-    private static string[] _firstWordList;
-    private static string[] _secondWordList;
-    private static string[] _wordList;
+    private static string[]? _firstWordList;
+    private static string[]? _secondWordList;
+
     public UsernameGeneratorService(
         byte firstWordSyllableMinCount,
         byte firstWordSyllableMaxCount,
@@ -18,23 +16,21 @@ public class UsernameGeneratorService
         byte maxUsernameLength
     )
     {
-        _firstWordSyllableMinCount = firstWordSyllableMinCount;
-        _firstWordSyllableMaxCount = firstWordSyllableMaxCount;
-        _secondWordSyllableMinCount = secondWordSyllableMinCount;
-        _secondWordSyllableMaxCount = secondWordSyllableMaxCount;
         _maxUsernameLength = maxUsernameLength;
-        _wordList = File.ReadAllLines("./Data/words-and-syllables.csv");
+        var wordList = File.ReadAllLines("./Data/words-and-syllables.csv");
 
-        _firstWordList = LimitWordListBySyllableCount(_wordList, _firstWordSyllableMinCount, _firstWordSyllableMaxCount);
-        _secondWordList = LimitWordListBySyllableCount(_wordList, _secondWordSyllableMinCount, _secondWordSyllableMaxCount);
+        _firstWordList = LimitWordListBySyllableCount(wordList, firstWordSyllableMinCount, firstWordSyllableMaxCount);
+        _secondWordList = LimitWordListBySyllableCount(wordList, secondWordSyllableMinCount, secondWordSyllableMaxCount);
     }
     
     public string GetNewCombination()
     {
-        var result = "";
+        string result;
         do
         {
+            Debug.Assert(_firstWordList != null, nameof(_firstWordList) + " != null");
             var firstWordIndex = new Random().Next(0, _firstWordList.Length - 1);
+            Debug.Assert(_secondWordList != null, nameof(_secondWordList) + " != null");
             var secondWordIndex = new Random().Next(0, _secondWordList.Length - 1);
             result =
                 $"{_firstWordList[firstWordIndex]}{_secondWordList[secondWordIndex]}";
@@ -56,7 +52,7 @@ public class UsernameGeneratorService
                     && int.Parse(x.Split(",")[1]) <= maxSyllableCount
             )
             .Select(x => x.Split(",")[0].ToString())
-            .ToArray<string>();
+            .ToArray();
     }
 
 }

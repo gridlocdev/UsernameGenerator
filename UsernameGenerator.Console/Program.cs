@@ -19,4 +19,4 @@ do
     var key = Console.ReadKey(true).Key;
     if (key != ConsoleKey.Enter)
         shouldContinue = false;
-} while (shouldContinue == true);
+} while (shouldContinue);

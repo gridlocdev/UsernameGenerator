@@ -1,9 +1,10 @@
 using System.Text;
-using UsernameGenerator.Core;
+
+namespace UsernameGenerator.Core;
 
 public class SyllableWriter
 {
-    public static async Task WriteToCSV()
+    public static async Task WriteToCsv()
     {
         Console.WriteLine("Writing words.txt file to words-and-syllables.txt...");
         string[] words = await File.ReadAllLinesAsync("./Data/words.txt");
@@ -13,13 +14,13 @@ public class SyllableWriter
         // ~~~ Write all syllable counts to CSV ~~~
         var csv = new StringBuilder();
 
-        for (int i = 0; i < words.Length; i++)
+        for (var i = 0; i < words.Length; i++)
         {
             csv.AppendLine(
-                String.Format("{0},{1}", words[i].ToTitleCase(), words[i].GetSyllableCount())
+                $"{words[i].ToTitleCase()},{words[i].GetSyllableCount()}"
             );
         }
-        File.WriteAllText("./Data/words-and-syllables.csv", csv.ToString());
+        await File.WriteAllTextAsync("./Data/words-and-syllables.csv", csv.ToString());
 
         Console.WriteLine("Finished writing syllable csv file successfully!");
     }
