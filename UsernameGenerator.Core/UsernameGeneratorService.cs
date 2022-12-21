@@ -29,7 +29,7 @@ public class UsernameGeneratorService
         _secondWordList = LimitWordListBySyllableCount(_wordList, _secondWordSyllableMinCount, _secondWordSyllableMaxCount);
     }
     
-    public static string GetNewCombination()
+    public string GetNewCombination()
     {
         var result = "";
         do

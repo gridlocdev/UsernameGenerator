@@ -1,6 +1,6 @@
 ﻿using UsernameGenerator.Core;
 
-var service = new UsernameGeneratorService(
+var usernameService = new UsernameGeneratorService(
     firstWordSyllableMinCount: 1,
     firstWordSyllableMaxCount: 1,
     secondWordSyllableMinCount: 1,
@@ -14,7 +14,7 @@ Console.WriteLine(
 var shouldContinue = true;
 do
 {
-    string username = UsernameGeneratorService.GetNewCombination();
+    string username = usernameService.GetNewCombination();
     Console.WriteLine(username);
     var key = Console.ReadKey(true).Key;
     if (key != ConsoleKey.Enter)
