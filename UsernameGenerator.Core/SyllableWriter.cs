@@ -1,9 +1,21 @@
 using System.Text;
+using System.Text.Json;
 
 namespace UsernameGenerator.Core;
 
 public class SyllableWriter
 {
+    public static void WriteToJson()
+    {
+        Console.WriteLine("Writing words.txt file to words-and-syllables.json...");
+        Word[] words = File.ReadAllLines("./Data/words.txt").Select(x => new Word{ Name = x, SyllableCount = x.GetSyllableCount()}).ToArray();
+
+        var jsonString = JsonSerializer.Serialize(words);
+        
+        File.WriteAllText("./Data/words-and-syllables.json", jsonString);
+
+        Console.WriteLine("Finished writing syllable json file successfully!");
+    }
     public static async Task WriteToCsv()
     {
         Console.WriteLine("Writing words.txt file to words-and-syllables.txt...");

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace UsernameGenerator.Core;
 
@@ -17,10 +18,14 @@ public class UsernameGeneratorService
     )
     {
         _maxUsernameLength = maxUsernameLength;
-        var wordList = File.ReadAllLines("./Data/words-and-syllables.csv");
+        var words = JsonSerializer.Deserialize<Word[]>(
+            File.ReadAllText("./Data/words-and-syllables.json")
+            );
 
-        _firstWordList = LimitWordListBySyllableCount(wordList, firstWordSyllableMinCount, firstWordSyllableMaxCount);
-        _secondWordList = LimitWordListBySyllableCount(wordList, secondWordSyllableMinCount, secondWordSyllableMaxCount);
+        _firstWordList = words.Where(x =>
+            x.SyllableCount >= firstWordSyllableMinCount && x.SyllableCount <= firstWordSyllableMaxCount).Select(x => x.Name).ToArray();
+        _secondWordList = words.Where(x =>
+            x.SyllableCount >= secondWordSyllableMinCount && x.SyllableCount <= secondWordSyllableMaxCount).Select(x => x.Name).ToArray();
     }
     
     public string GetNewCombination()
@@ -38,21 +43,4 @@ public class UsernameGeneratorService
 
         return result;
     }
-
-    private static string[] LimitWordListBySyllableCount(
-        IEnumerable<string> commaDelimitedWordAndSyllableArray,
-        byte minSyllableCount,
-        byte maxSyllableCount
-    )
-    {
-        return commaDelimitedWordAndSyllableArray
-            .Where(
-                x =>
-                    int.Parse(x.Split(",")[1]) >= minSyllableCount
-                    && int.Parse(x.Split(",")[1]) <= maxSyllableCount
-            )
-            .Select(x => x.Split(",")[0].ToString())
-            .ToArray();
-    }
-
 }
