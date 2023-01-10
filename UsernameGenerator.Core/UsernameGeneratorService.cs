@@ -34,7 +34,7 @@ public class UsernameGeneratorService
             var secondWordIndex = new Random().Next(0, _secondWordList.Length - 1);
             result =
                 $"{_firstWordList[firstWordIndex]}{_secondWordList[secondWordIndex]}";
-        } while (result.Length < _maxUsernameLength);
+        } while (result.Length > MaxUsernameLength);
 
         return result;
     }
