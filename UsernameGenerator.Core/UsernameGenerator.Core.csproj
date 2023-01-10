@@ -13,10 +13,4 @@
       </None>
     </ItemGroup>
 
-<!--    <ItemGroup>-->
-<!--      <None Update="Data\words-and-syllables.json">-->
-<!--        <CopyToOutputDirectory>Never</CopyToOutputDirectory>-->
-<!--      </None>-->
-<!--    </ItemGroup>-->
-
 </Project>
