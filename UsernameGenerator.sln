@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Console",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Core", "UsernameGenerator.Core\UsernameGenerator.Core.csproj", "{9F39F6A3-3B14-4E3D-8B18-EFE3ADD23B64}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Web", "UsernameGenerator.Web\UsernameGenerator.Web.csproj", "{284587D6-17E1-454D-8E3E-D78312785528}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{9F39F6A3-3B14-4E3D-8B18-EFE3ADD23B64}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F39F6A3-3B14-4E3D-8B18-EFE3ADD23B64}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F39F6A3-3B14-4E3D-8B18-EFE3ADD23B64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284587D6-17E1-454D-8E3E-D78312785528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284587D6-17E1-454D-8E3E-D78312785528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284587D6-17E1-454D-8E3E-D78312785528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284587D6-17E1-454D-8E3E-D78312785528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

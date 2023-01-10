@@ -8,14 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Data\words.txt" />
-      <Content Include="Data\words.txt">
+      <None Update="Data\words-and-syllables.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
-      <None Remove="Data\words-and-syllables.csv" />
-      <Content Include="Data\words-and-syllables.csv">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
+      </None>
     </ItemGroup>
+
+<!--    <ItemGroup>-->
+<!--      <None Update="Data\words-and-syllables.json">-->
+<!--        <CopyToOutputDirectory>Never</CopyToOutputDirectory>-->
+<!--      </None>-->
+<!--    </ItemGroup>-->
 
 </Project>

@@ -2,6 +2,6 @@ namespace UsernameGenerator.Core;
 
 public class Word
 {
-    public string Name { get; set; }
-    public int SyllableCount { get; set; }
+    public string Name { get; init; }
+    public int SyllableCount { get; init; }
 }

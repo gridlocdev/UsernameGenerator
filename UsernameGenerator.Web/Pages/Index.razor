@@ -1,0 +1,34 @@
+﻿@page "/"
+@using UsernameGenerator.Core
+@inject HttpClient Http;
+
+<PageTitle>Index</PageTitle>
+
+@if (!isLoadingData)
+{
+    <h1>Hello! Your new username is: @username</h1>
+
+    <button @onclick="async () => await GetNewUsername()">Get New Username</button>
+}
+else
+{
+    <span><b>Loading...</b></span>
+}
+
+
+@code {
+    string? username;
+    UsernameGeneratorService service;
+    bool isLoadingData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        isLoadingData = true;
+        service = new UsernameGeneratorService(await Http.GetFromJsonAsync<Word[]>("appdata/words-and-syllables.json"));
+        isLoadingData = false;
+    }
+
+    async Task GetNewUsername() => username = await service.GetNewCombinationAsync();
+
+}
+

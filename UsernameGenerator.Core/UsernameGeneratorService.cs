@@ -5,30 +5,25 @@ namespace UsernameGenerator.Core;
 
 public class UsernameGeneratorService
 {
-    private static byte _maxUsernameLength;
-    private static string[]? _firstWordList;
-    private static string[]? _secondWordList;
+    private byte FirstWordSyllableMinCount { get; set; } = 1;
+    private byte FirstWordSyllableMaxCount { get; set; } = 1;
+    private byte SecondWordSyllableMinCount { get; set; } = 1;
+    private byte SecondWordSyllableMaxCount { get; set;  } = 1;
+    private byte MaxUsernameLength { get; set; } = 5;
+    private string[]? _firstWordList;
+    private string[]? _secondWordList;
 
     public UsernameGeneratorService(
-        byte firstWordSyllableMinCount,
-        byte firstWordSyllableMaxCount,
-        byte secondWordSyllableMinCount,
-        byte secondWordSyllableMaxCount,
-        byte maxUsernameLength
+       Word[]? words
     )
     {
-        _maxUsernameLength = maxUsernameLength;
-        var words = JsonSerializer.Deserialize<Word[]>(
-            File.ReadAllText("./Data/words-and-syllables.json")
-            );
-
         _firstWordList = words.Where(x =>
-            x.SyllableCount >= firstWordSyllableMinCount && x.SyllableCount <= firstWordSyllableMaxCount).Select(x => x.Name).ToArray();
+            x.SyllableCount >= FirstWordSyllableMinCount && x.SyllableCount <= FirstWordSyllableMaxCount).Select(x => x.Name).ToArray();
         _secondWordList = words.Where(x =>
-            x.SyllableCount >= secondWordSyllableMinCount && x.SyllableCount <= secondWordSyllableMaxCount).Select(x => x.Name).ToArray();
+            x.SyllableCount >= SecondWordSyllableMinCount && x.SyllableCount <= SecondWordSyllableMaxCount).Select(x => x.Name).ToArray();
     }
     
-    public string GetNewCombination()
+    public async Task<string> GetNewCombinationAsync()
     {
         string result;
         do

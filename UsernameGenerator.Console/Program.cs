@@ -1,12 +1,13 @@
-﻿using UsernameGenerator.Core;
+﻿using System.Reflection;
+using System.Text.Json;
+using UsernameGenerator.Core;
+
 
 var usernameService = new UsernameGeneratorService(
-    firstWordSyllableMinCount: 1,
-    firstWordSyllableMaxCount: 1,
-    secondWordSyllableMinCount: 1,
-    secondWordSyllableMaxCount: 1,
-    maxUsernameLength: 9
-    );
+    JsonSerializer.Deserialize<Word[]>(
+        File.ReadAllText("./Data/words-and-syllables.json")
+    )
+);
 
 Console.WriteLine(
     "Directions: Press \"Enter\" to advance to the next item, or any other key to stop.\n"
@@ -14,7 +15,7 @@ Console.WriteLine(
 var shouldContinue = true;
 do
 {
-    string username = usernameService.GetNewCombination();
+    var username = await usernameService.GetNewCombinationAsync();
     Console.WriteLine(username);
     var key = Console.ReadKey(true).Key;
     if (key != ConsoleKey.Enter)
