@@ -2,7 +2,13 @@
 @using UsernameGenerator.Core
 @inject HttpClient Http;
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Username Generator App</PageTitle>
+
+<div class="header-bar">
+    <h2>Username Generator App</h2>
+    <span>( ) Info</span>
+</div>
+
 
 @if (service != null)
 {
@@ -16,9 +22,9 @@
             @username
         </span>
     </h1>
-    
+
     <button @onclick="async () => await GetNewUsername()">Generate New Username</button>
-    
+
     <div class="form-combo">
         <label for="numberOfLettersInput">Letters</label>
         <input id="numberOfLettersInput" type="number" min="2" @bind="service.MaxUsernameLength" placeholder="Number of Letters"/>
