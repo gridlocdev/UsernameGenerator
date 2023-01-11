@@ -25,6 +25,8 @@ public class UsernameGeneratorService
     
     public async Task<string> GetNewCombinationAsync()
     {
+        if (MaxUsernameLength < 2)
+            throw new Exception("The \"MaxUsernameLength\" property is too small, please enter a value 2 or higher.");
         string result;
         do
         {

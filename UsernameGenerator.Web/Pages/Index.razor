@@ -21,7 +21,7 @@
     
     <div class="form-combo">
         <label for="numberOfLettersInput">Letters</label>
-        <input id="numberOfLettersInput" type="number" @bind="service.MaxUsernameLength" placeholder="Number of Letters"/>
+        <input id="numberOfLettersInput" type="number" min="2" @bind="service.MaxUsernameLength" placeholder="Number of Letters"/>
     </div>
 }
 else
