@@ -9,7 +9,7 @@ public class UsernameGeneratorService
     private byte FirstWordSyllableMaxCount { get; set; } = 1;
     private byte SecondWordSyllableMinCount { get; set; } = 1;
     private byte SecondWordSyllableMaxCount { get; set;  } = 1;
-    private byte MaxUsernameLength { get; set; } = 5;
+    public byte MaxUsernameLength { get; set; } = 5;
     private string[]? _firstWordList;
     private string[]? _secondWordList;
 

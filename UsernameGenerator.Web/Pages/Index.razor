@@ -4,15 +4,31 @@
 
 <PageTitle>Index</PageTitle>
 
-@if (!isLoadingData)
+@if (service != null)
 {
-    <h1>Hello! Your new username is: @username</h1>
-
-    <button @onclick="async () => await GetNewUsername()">Get New Username</button>
+    <h1>
+        Hello! Your new username is:
+        <span
+            style="
+                background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;">
+            @username
+        </span>
+    </h1>
+    
+    <button @onclick="async () => await GetNewUsername()">Generate New Username</button>
+    
+    <div class="form-combo">
+        <label for="numberOfLettersInput">Letters</label>
+        <input id="numberOfLettersInput" type="number" @bind="service.MaxUsernameLength" placeholder="Number of Letters"/>
+    </div>
 }
 else
 {
-    <span><b>Loading...</b></span>
+    <span>
+        <b>Loading data...</b>
+    </span>
 }
 
 
@@ -20,13 +36,25 @@ else
     string? username;
     UsernameGeneratorService service;
     bool isLoadingData;
+    string randomColorOne = "#FFFFFF";
+    string randomColorTwo = "#FFFFFF";
 
     protected override async Task OnInitializedAsync()
     {
         service = new UsernameGeneratorService(await Http.GetFromJsonAsync<Word[]>("_appdata/words-and-syllables.json"));
     }
 
-    async Task GetNewUsername() => username = await service.GetNewCombinationAsync();
+    async Task GetNewUsername()
+    {
+        GenerateRandomTextColors();
+        username = await service.GetNewCombinationAsync();
+    }
+
+    void GenerateRandomTextColors()
+    {
+        randomColorOne = $"#{new Random().Next(0x1000000):X6}";
+        randomColorTwo = $"#{new Random().Next(0x1000000):X6}";
+        StateHasChanged();
+    }
 
 }
-
