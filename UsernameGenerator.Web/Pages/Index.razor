@@ -23,9 +23,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        isLoadingData = true;
-        service = new UsernameGeneratorService(await Http.GetFromJsonAsync<Word[]>("appdata/words-and-syllables.json"));
-        isLoadingData = false;
+        service = new UsernameGeneratorService(await Http.GetFromJsonAsync<Word[]>("_appdata/words-and-syllables.json"));
     }
 
     async Task GetNewUsername() => username = await service.GetNewCombinationAsync();

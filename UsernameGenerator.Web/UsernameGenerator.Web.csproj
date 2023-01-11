@@ -16,13 +16,17 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\appdata" />
+      <Folder Include="wwwroot\_appdata" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\appdata\words-and-syllables.json" />
     </ItemGroup>
 
     <!-- To ensure the latest data is present in the web root, copy the data generated from the shared library into the web hosting root. -->
-    <Target Name="RefreshDataInWebRoot" BeforeTargets="BeforeBuild">
-        <Delete Files=".\wwwroot\words-and-syllables.json" />
-        <Copy SourceFiles=".\bin\Debug\net6.0\Data\words-and-syllables.json" DestinationFiles=".\wwwroot\appdata\words-and-syllables.json" OverwriteReadOnlyFiles="true" />
+    <Target Name="RefreshDataInWebRoot" AfterTargets="AfterBuild">
+        <Copy SourceFiles=".\bin\Debug\net6.0\Data\words-and-syllables.json" DestinationFiles=".\wwwroot\_appdata\words-and-syllables.json" OverwriteReadOnlyFiles="true" />
+        <RemoveDir Directories=".\bin\Debug\net6.0\Data\" />
     </Target>
-
+    
 </Project>
