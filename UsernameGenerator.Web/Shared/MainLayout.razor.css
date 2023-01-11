@@ -8,13 +8,18 @@ main {
 
 @media (prefers-color-scheme: light) {
     main {
-        background-color: #DDD;
-        color: black;
+        --color-text: #222;
+        color: var(--color-text);
+        --color-background: #DDD;
+        background-color: var(--color-background);
     }
 }
 @media (prefers-color-scheme: dark) {
     main {
-        background-color: #222;
-        color: white;
+        --color-text: #DDD;
+        color: var(--color-text);
+        --color-background: #222;
+        background-color: var(--color-background);
+
     }
 }
