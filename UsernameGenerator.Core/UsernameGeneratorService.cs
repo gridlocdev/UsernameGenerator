@@ -28,6 +28,7 @@ public class UsernameGeneratorService
         if (MaxUsernameLength < 2)
             throw new Exception("The \"MaxUsernameLength\" property is too small, please enter a value 2 or higher.");
         string result;
+        byte attempts = 0;
         do
         {
             Debug.Assert(_firstWordList != null, nameof(_firstWordList) + " != null");
@@ -36,6 +37,10 @@ public class UsernameGeneratorService
             var secondWordIndex = new Random().Next(0, _secondWordList.Length - 1);
             result =
                 $"{_firstWordList[firstWordIndex]}{_secondWordList[secondWordIndex]}";
+            
+            attempts++;
+            if (attempts >= 50000)
+                break;
         } while (result.Length > MaxUsernameLength);
 
         return result;
