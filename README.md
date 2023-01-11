@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a console application that randomly generates usernames in a title-case format (e.g. "WordWord"). Each with roughly-specific syllable lengths.
+This is a set of applications to generate usernames in a title-case format (e.g. "WordWord") with specific criteria such as character count and syllable lengths.
 
 > Word data sourced from [EddyDN's JSON version](https://github.com/eddydn/DictionaryDatabase) of the public domain [Online Plain Text English Dictionary](https://www.mso.anu.edu.au/~ralph/OPTED/)
 
