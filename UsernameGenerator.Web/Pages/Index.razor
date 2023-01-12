@@ -12,16 +12,9 @@
 
 @if (service != null)
 {
-    <h1>
-        Hello! Your new username is:
-        <span
-            style="
-                background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;">
-            @username
-        </span>
-    </h1>
+    <span class="username-header" style="background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);">
+        @username
+    </span>
 
     <button @onclick="async () => await GetNewUsername()">Generate New Username</button>
 
@@ -40,8 +33,7 @@ else
 
 @code {
     string? username;
-    UsernameGeneratorService service;
-    bool isLoadingData;
+    UsernameGeneratorService? service;
     string randomColorOne = "#FFFFFF";
     string randomColorTwo = "#FFFFFF";
 
@@ -53,7 +45,8 @@ else
     async Task GetNewUsername()
     {
         GenerateRandomTextColors();
-        username = await service.GetNewCombinationAsync();
+        if (service != null)
+            username = await service.GetNewCombinationAsync();
     }
 
     void GenerateRandomTextColors()
