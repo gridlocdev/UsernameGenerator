@@ -9,7 +9,6 @@
     <span>( ) Info</span>
 </div>
 
-
 @if (service != null)
 {
     <span class="username-header" style="background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);">
@@ -25,9 +24,9 @@
 }
 else
 {
-    <span>
-        <b>Loading data...</b>
-    </span>
+    @* Loading Animation *@
+    <span>Loading username data...</span>
+    <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 }
 
 

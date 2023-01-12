@@ -4,8 +4,7 @@ button {
     color: white;
     font-size: 1.25rem;
     font-weight: bold;
-    background-color: white;
-    border: 1px;
+    border: 0;
     transition: 0.25s;
     background-image: -webkit-linear-gradient(#1b6ec2, #26b050);
 }
@@ -67,6 +66,5 @@ label {
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent;
     font-size: 3rem;
-    font-weight: bold;
     margin-bottom: 1.5rem;
 }
