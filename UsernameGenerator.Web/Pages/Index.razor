@@ -15,11 +15,11 @@
         @username
     </span>
 
-    <button @onclick="async () => await GetNewUsername()">Generate New Username</button>
+    <button @onclick="GetNewUsername">Generate New Username</button>
 
     <div class="form-combo">
         <label for="numberOfLettersInput">Letters</label>
-        <input id="numberOfLettersInput" type="number" min="2" @bind="service.MaxUsernameLength" placeholder="Number of Letters"/>
+        <input id="numberOfLettersInput" type="number" min="2" max="21" @bind="usernameLength" placeholder="Number of Letters"/>
     </div>
 }
 else
@@ -32,6 +32,10 @@ else
 
 @code {
     string? username;
+    byte usernameLength = 9;
+    byte firstWordSyllableCount = 1;
+    byte secondWordSyllableCount = 1;
+    
     UsernameGeneratorService? service;
     string randomColorOne = "#FFFFFF";
     string randomColorTwo = "#FFFFFF";
@@ -41,11 +45,11 @@ else
         service = new UsernameGeneratorService(await Http.GetFromJsonAsync<Word[]>("_appdata/words-and-syllables.json"));
     }
 
-    async Task GetNewUsername()
+    void GetNewUsername()
     {
         GenerateRandomTextColors();
         if (service != null)
-            username = await service.GetNewCombinationAsync();
+            username = service.GetNewCombination(usernameLength, firstWordSyllableCount, secondWordSyllableCount);
     }
 
     void GenerateRandomTextColors()
