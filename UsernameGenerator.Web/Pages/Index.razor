@@ -75,11 +75,11 @@ else
 
         try
         {
+            errorMessage = "";
             isLoadingData = true;
             await Task.Delay(100);
             StateHasChanged();
             username = service.GetNewCombination(usernameLength, firstWordSyllableCount, secondWordSyllableCount);
-            errorMessage = "";
             GenerateRandomTextColors();
         }
         catch (TimeoutException ex)
