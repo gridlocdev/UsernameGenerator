@@ -6,19 +6,22 @@
 
 @if (service != null)
 {
-    <main>
-        <span class="username-text" style="background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);">
-            @username
-        </span>
+    <div class="container">
 
-        <button disabled="@isLoadingData" @onclick="async () => await GetNewUsername()">
-            Generate New Username
-        </button>
+        <div class="username-container">
+            <span class="username-text" style="background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);">
+                @username
+            </span>
 
+            <button disabled="@isLoadingData" @onclick="async () => await GetNewUsername()">
+                Generate New Username
+            </button>
 
-        <span style="font-style: italic; transition: 0.1s;">@errorMessage</span>
+            <span class="message-label">@errorMessage</span>
 
-        <div>
+        </div>
+        
+        <div class="filter-controls">
             <section class="form-combo">
                 <label for="numberOfLettersInput">Letters</label>
                 <input id="numberOfLettersInput" type="number" min="2" max="21" @bind="usernameLength" placeholder="Number of Letters"/>
@@ -32,7 +35,7 @@
                 <input id="secondWordSyllableCountInput" type="number" min="1" max="4" @bind="secondWordSyllableCount" placeholder="Number of Syllables"/>
             </section>
         </div>
-    </main>
+    </div>
 }
 else
 {
