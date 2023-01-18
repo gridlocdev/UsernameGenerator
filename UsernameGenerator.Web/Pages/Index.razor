@@ -4,23 +4,35 @@
 
 <PageTitle>Username Generator App</PageTitle>
 
-<div class="header-bar">
-    <h2>Username Generator App</h2>
-    <span>( ) Info</span>
-</div>
-
 @if (service != null)
 {
-    <span class="username-header" style="background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);">
-        @username
-    </span>
+    <main>
+        <span class="username-text" style="background: -webkit-linear-gradient(@randomColorOne, @randomColorTwo);">
+            @username
+        </span>
 
-    <button @onclick="GetNewUsername">Generate New Username</button>
+        <button disabled="@isLoadingData" @onclick="async () => await GetNewUsername()">
+            Generate New Username
+        </button>
 
-    <div class="form-combo">
-        <label for="numberOfLettersInput">Letters</label>
-        <input id="numberOfLettersInput" type="number" min="2" max="21" @bind="usernameLength" placeholder="Number of Letters"/>
-    </div>
+
+        <span style="font-style: italic; transition: 0.1s;">@errorMessage</span>
+
+        <div>
+            <section class="form-combo">
+                <label for="numberOfLettersInput">Letters</label>
+                <input id="numberOfLettersInput" type="number" min="2" max="21" @bind="usernameLength" placeholder="Number of Letters"/>
+            </section>
+            <section class="form-combo">
+                <label for="firstWordSyllableCountInput">Word 1 Syllable Count</label>
+                <input id="firstWordSyllableCountInput" type="number" min="1" max="4" @bind="firstWordSyllableCount" placeholder="Number of Syllables"/>
+            </section>
+            <section class="form-combo">
+                <label for="secondWordSyllableCountInput">Word 2 Syllable Count</label>
+                <input id="secondWordSyllableCountInput" type="number" min="1" max="4" @bind="secondWordSyllableCount" placeholder="Number of Syllables"/>
+            </section>
+        </div>
+    </main>
 }
 else
 {
@@ -41,10 +53,12 @@ else
 
 @code {
     string? username;
+    bool isLoadingData;
+    string errorMessage = "";
     byte usernameLength = 9;
     byte firstWordSyllableCount = 1;
     byte secondWordSyllableCount = 1;
-    
+
     UsernameGeneratorService? service;
     string randomColorOne = "#FFFFFF";
     string randomColorTwo = "#FFFFFF";
@@ -54,11 +68,26 @@ else
         service = new UsernameGeneratorService(await Http.GetFromJsonAsync<Word[]>("_appdata/words-and-syllables.json"));
     }
 
-    void GetNewUsername()
+    async Task GetNewUsername()
     {
-        GenerateRandomTextColors();
-        if (service != null)
+        if (service == null)
+            return;
+
+        try
+        {
+            isLoadingData = true;
+            await Task.Delay(100);
+            StateHasChanged();
             username = service.GetNewCombination(usernameLength, firstWordSyllableCount, secondWordSyllableCount);
+            errorMessage = "";
+            GenerateRandomTextColors();
+        }
+        catch (TimeoutException ex)
+        {
+            errorMessage = ex.Message;
+        }
+        isLoadingData = false;
+        StateHasChanged();
     }
 
     void GenerateRandomTextColors()
