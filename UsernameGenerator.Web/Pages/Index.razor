@@ -78,7 +78,6 @@ else
             errorMessage = "";
             isLoadingData = true;
             await Task.Delay(100);
-            StateHasChanged();
             username = service.GetNewCombination(usernameLength, firstWordSyllableCount, secondWordSyllableCount);
             GenerateRandomTextColors();
         }
@@ -87,7 +86,6 @@ else
             errorMessage = ex.Message;
         }
         isLoadingData = false;
-        StateHasChanged();
     }
 
     void GenerateRandomTextColors()
