@@ -7,6 +7,7 @@ public class UsernameGeneratorService
     private readonly Word[] _words;
     public byte ShortestWordLength { get; }
     public byte LongestWordLength { get; }
+    const int searchLockoutTimeSeconds = 3;
 
     public UsernameGeneratorService(
         Word[] words
@@ -22,7 +23,7 @@ public class UsernameGeneratorService
     public string GetNewCombination(byte usernameLength = 9, byte firstWordSyllableCount = 1,
         byte secondWordSyllableCount = 1)
     {
-        if (usernameLength < 2)
+        if (usernameLength < ShortestWordLength * 2)
             throw new Exception("The \"UsernameLength\" property is too small, please enter a value 2 or higher.");
 
         if (usernameLength > LongestWordLength * 2)
@@ -50,10 +51,10 @@ public class UsernameGeneratorService
                 $"{firstWord.Name}{secondWord.Name}";
 
             // Break out after a few seconds if a word is not found to avoid infinite looping
-            if (stopwatch.Elapsed <= TimeSpan.FromSeconds(3)) continue;
+            if (stopwatch.Elapsed <= TimeSpan.FromSeconds(searchLockoutTimeSeconds)) continue;
             stopwatch.Stop();
             throw new TimeoutException(
-                "Search time took longer than 3 seconds, please consider adjusting your search criteria.");
+                $"Search time took longer than {searchLockoutTimeSeconds} seconds, please consider adjusting your search criteria.");
         } while (
             (result.Length == usernameLength &&
              firstWord.SyllableCount == firstWordSyllableCount &&
