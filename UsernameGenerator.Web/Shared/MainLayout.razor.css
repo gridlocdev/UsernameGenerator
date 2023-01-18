@@ -1,9 +1,37 @@
 header {
     display: flex;
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     justify-content: space-between;
+    text-decoration: none;
 }
 
 main {
     height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.15s;
+}
+
+a:hover {
+    opacity: 0.5;
+}
+
+/* Spacing helpers to push the GitHub text in-line with the icon*/
+span::before,
+span::after {
+    content: '';
+    display: block;
+    height: 0;
+    width: 0;
+}
+
+span::before{
+    margin-top:-6px;
+}
+
+span::after{
+    margin-bottom:-8px;
 }
