@@ -20,10 +20,14 @@ Console.WriteLine(
 var shouldContinue = true;
 do
 {
+    var usernameLength = (byte)new Random().Next(2, 12);
+    var firstWordSyllableCount = usernameLength >= 6 ? (byte)new Random().Next(1, 2) : (byte)1;
+    var secondWordSyllableCount = usernameLength >= 6 ? (byte)new Random().Next(1, 2) : (byte)1;
+    
     var username = usernameService.GetNewCombination(
-        usernameLength: 9,
-        firstWordSyllableCount: 1,
-        secondWordSyllableCount: 1
+        usernameLength,
+        firstWordSyllableCount,
+        secondWordSyllableCount
     );
     Console.WriteLine(username);
     var key = Console.ReadKey(true).Key;

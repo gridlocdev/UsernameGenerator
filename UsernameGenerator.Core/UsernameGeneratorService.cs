@@ -5,8 +5,8 @@ namespace UsernameGenerator.Core;
 public class UsernameGeneratorService
 {
     private readonly Word[] _words;
-    public byte ShortestWordLength { get; }
-    public byte LongestWordLength { get; }
+    private byte ShortestWordLength { get; }
+    private byte LongestWordLength { get; }
     const int searchLockoutTimeSeconds = 3;
 
     public UsernameGeneratorService(
