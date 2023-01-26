@@ -97,10 +97,10 @@ public class AppWindow : Window
 
         var resultsFrame = new FrameView("Result")
         {
-            X = Pos.Right(inputFrame),
+            X = Pos.Right(inputFrame) + 1,
             Y = 1,
-            Width = Dim.Fill(),
-            Height = Dim.Fill()
+            Width = Dim.Fill() - 1,
+            Height = 7,
         };
         resultsFrame.Add(
             usernameDisplayLabel
