@@ -15,23 +15,8 @@ public class AppWindow : Window
         _service = InitializeService();
         Title = "Username Generator (Ctrl + Q to quit)";
         ColorScheme = Colors.TopLevel;
-
-        var usernameDisplayLabel = new Label("          ")
-        {
-            X = Pos.Center(),
-            Y = Pos.Center() + 1,
-            TextAlignment = TextAlignment.Centered,
-        };
-        var newUsernameButton = new Button("Generate New Username", true)
-        {
-            X = Pos.Center(),
-            Y = Pos.Center() + 3,
-        };
-        newUsernameButton.Clicked += () =>
-        {
-            usernameDisplayLabel.Text = _service.GetNewCombination(_usernameLength, _firstWordSyllableCount,
-                _secondWordSyllableCount);
-        };
+        Width = Dim.Fill();
+        Height = Dim.Fill();
 
         var lengthLabel = new Label("Username Length: ")
         {
@@ -43,10 +28,10 @@ public class AppWindow : Window
             SelectedItem = 8,
             X = 1,
             Y = 2,
-            Width = Dim.Percent(25),
+            Width = Dim.Percent(50),
         };
         lengthComboBox.SelectedItemChanged += args => { _usernameLength = args.Item + 1; };
-        
+
         var firstSyllableCountLabel = new Label("First Word Syllable Count: ")
         {
             X = 1,
@@ -57,7 +42,7 @@ public class AppWindow : Window
             SelectedItem = 0,
             X = 1,
             Y = 5,
-            Width = Dim.Percent(25),
+            Width = Dim.Percent(50),
         };
         firstSyllableCountComboBox.SelectedItemChanged += args => { _firstWordSyllableCount = args.Item + 1; };
 
@@ -71,20 +56,57 @@ public class AppWindow : Window
             SelectedItem = 0,
             X = 1,
             Y = 8,
-            Width = Dim.Percent(25),
+            Width = Dim.Percent(50),
         };
         secondSyllableCountComboBox.SelectedItemChanged += args => { _secondWordSyllableCount = args.Item + 1; };
 
-        Add(
-            usernameDisplayLabel,
-            newUsernameButton,
+        var usernameDisplayLabel = new Label("          ")
+        {
+            X = Pos.Center(),
+            Y = Pos.Center(),
+            TextAlignment = TextAlignment.Centered,
+        };
+
+        var newUsernameButton = new Button("Generate New Username", true)
+        {
+            X = Pos.Center(),
+            Y = 11,
+        };
+        newUsernameButton.Clicked += () =>
+        {
+            usernameDisplayLabel.Text = _service.GetNewCombination(_usernameLength, _firstWordSyllableCount,
+                _secondWordSyllableCount);
+        };
+
+        var inputFrame = new FrameView("Filters")
+        {
+            X = 1,
+            Y = 1,
+            Width = Dim.Percent(40),
+            Height = Dim.Fill()
+        };
+        inputFrame.Add(
             lengthLabel,
             lengthComboBox,
             firstSyllableCountLabel,
             firstSyllableCountComboBox,
             secondSyllableCountLabel,
-            secondSyllableCountComboBox
+            secondSyllableCountComboBox,
+            newUsernameButton
         );
+
+        var resultsFrame = new FrameView("Result")
+        {
+            X = Pos.Right(inputFrame),
+            Y = 1,
+            Width = Dim.Fill(),
+            Height = Dim.Fill()
+        };
+        resultsFrame.Add(
+            usernameDisplayLabel
+        );
+
+        Add(inputFrame, resultsFrame);
     }
 
     private static UsernameGeneratorService InitializeService()
