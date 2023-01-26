@@ -16,16 +16,16 @@ public class AppWindow : Window
         Title = "Username Generator (Ctrl + Q to quit)";
         ColorScheme = Colors.TopLevel;
 
-        var usernameDisplayLabel = new Label("")
+        var usernameDisplayLabel = new Label("          ")
         {
             X = Pos.Center(),
-            Y = Pos.Center(),
+            Y = Pos.Center() + 1,
             TextAlignment = TextAlignment.Centered,
         };
         var newUsernameButton = new Button("Generate New Username", true)
         {
             X = Pos.Center(),
-            Y = Pos.Center() + 1,
+            Y = Pos.Center() + 3,
         };
         newUsernameButton.Clicked += () =>
         {
@@ -50,13 +50,13 @@ public class AppWindow : Window
         var firstSyllableCountLabel = new Label("First Word Syllable Count: ")
         {
             X = 1,
-            Y = 3,
+            Y = 4,
         };
         var firstSyllableCountComboBox = new ComboBox(new List<int> { 1, 2 })
         {
-            SelectedItem = 1,
+            SelectedItem = 0,
             X = 1,
-            Y = 4,
+            Y = 5,
             Width = Dim.Percent(25),
         };
         firstSyllableCountComboBox.SelectedItemChanged += args => { _firstWordSyllableCount = args.Item + 1; };
@@ -64,13 +64,13 @@ public class AppWindow : Window
         var secondSyllableCountLabel = new Label("Second Word Syllable Count: ")
         {
             X = 1,
-            Y = 5,
+            Y = 7,
         };
         var secondSyllableCountComboBox = new ComboBox(new List<int> { 1, 2 })
         {
-            SelectedItem = 1,
+            SelectedItem = 0,
             X = 1,
-            Y = 6,
+            Y = 8,
             Width = Dim.Percent(25),
         };
         secondSyllableCountComboBox.SelectedItemChanged += args => { _secondWordSyllableCount = args.Item + 1; };
