@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Core", "U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Web", "UsernameGenerator.Web\UsernameGenerator.Web.csproj", "{284587D6-17E1-454D-8E3E-D78312785528}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Terminal.UI", "UsernameGenerator.Terminal.UI\UsernameGenerator.Terminal.UI.csproj", "{2F7B034A-B0A8-4657-878F-2C40E9D18B11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{284587D6-17E1-454D-8E3E-D78312785528}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{284587D6-17E1-454D-8E3E-D78312785528}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{284587D6-17E1-454D-8E3E-D78312785528}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
