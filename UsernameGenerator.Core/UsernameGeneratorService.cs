@@ -5,8 +5,8 @@ namespace UsernameGenerator.Core;
 public class UsernameGeneratorService
 {
     private readonly Word[] _words;
-    private byte ShortestWordLength { get; }
-    private byte LongestWordLength { get; }
+    private int ShortestWordLength { get; }
+    private int LongestWordLength { get; }
     const int searchLockoutTimeSeconds = 3;
 
     public UsernameGeneratorService(
@@ -16,12 +16,12 @@ public class UsernameGeneratorService
         _words = words;
 
         // Mostly all words in the English language are under 255 letters, 
-        ShortestWordLength = (byte)_words.MinBy(w => w.Name.Length)!.Name.Length;
-        LongestWordLength = (byte)_words.MaxBy(w => w.Name.Length)!.Name.Length;
+        ShortestWordLength = _words.MinBy(w => w.Name.Length)!.Name.Length;
+        LongestWordLength = _words.MaxBy(w => w.Name.Length)!.Name.Length;
     }
 
-    public string GetNewCombination(byte usernameLength = 9, byte firstWordSyllableCount = 1,
-        byte secondWordSyllableCount = 1)
+    public string GetNewCombination(int usernameLength = 9, int firstWordSyllableCount = 1,
+        int secondWordSyllableCount = 1)
     {
         if (usernameLength < ShortestWordLength * 2)
             throw new Exception("The \"UsernameLength\" property is too small, please enter a value 2 or higher.");

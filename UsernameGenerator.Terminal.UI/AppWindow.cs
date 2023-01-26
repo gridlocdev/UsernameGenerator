@@ -6,9 +6,9 @@ using UsernameGenerator.Core;
 public class AppWindow : Window
 {
     private UsernameGeneratorService _service;
-    private byte _usernameLength = 9;
-    private byte _firstWordSyllableCount = 1;
-    private byte _secondWordSyllableCount = 1;
+    private int _usernameLength = 9;
+    private int _firstWordSyllableCount = 1;
+    private int _secondWordSyllableCount = 1;
 
     public AppWindow()
     {
@@ -21,7 +21,6 @@ public class AppWindow : Window
             X = Pos.Center(),
             Y = Pos.Center(),
             TextAlignment = TextAlignment.Centered,
-            AutoSize = true,
         };
         var newUsernameButton = new Button("Generate New Username", true)
         {
@@ -39,42 +38,42 @@ public class AppWindow : Window
             X = 1,
             Y = 1,
         };
-        var lengthComboBox = new ComboBox(new List<byte> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 })
+        var lengthComboBox = new ComboBox(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 })
         {
             SelectedItem = 8,
             X = 1,
             Y = 2,
             Width = Dim.Percent(25),
         };
-        lengthComboBox.SelectedItemChanged += args => { _usernameLength = (byte)args.Value; };
+        lengthComboBox.SelectedItemChanged += args => { _usernameLength = args.Item + 1; };
         
         var firstSyllableCountLabel = new Label("First Word Syllable Count: ")
         {
             X = 1,
             Y = 3,
         };
-        var firstSyllableCountComboBox = new ComboBox(new List<byte> { 1, 2 })
+        var firstSyllableCountComboBox = new ComboBox(new List<int> { 1, 2 })
         {
             SelectedItem = 1,
             X = 1,
             Y = 4,
             Width = Dim.Percent(25),
         };
-        firstSyllableCountComboBox.SelectedItemChanged += args => { _firstWordSyllableCount = (byte)args.Value; };
+        firstSyllableCountComboBox.SelectedItemChanged += args => { _firstWordSyllableCount = args.Item + 1; };
 
         var secondSyllableCountLabel = new Label("Second Word Syllable Count: ")
         {
             X = 1,
             Y = 5,
         };
-        var secondSyllableCountComboBox = new ComboBox(new List<byte> { 1, 2 })
+        var secondSyllableCountComboBox = new ComboBox(new List<int> { 1, 2 })
         {
             SelectedItem = 1,
             X = 1,
             Y = 6,
             Width = Dim.Percent(25),
         };
-        secondSyllableCountComboBox.SelectedItemChanged += args => { _secondWordSyllableCount = (byte)args.Value; };
+        secondSyllableCountComboBox.SelectedItemChanged += args => { _secondWordSyllableCount = args.Item + 1; };
 
         Add(
             usernameDisplayLabel,

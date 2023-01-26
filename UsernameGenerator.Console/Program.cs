@@ -20,9 +20,9 @@ Console.WriteLine(
 var shouldContinue = true;
 do
 {
-    var usernameLength = (byte)new Random().Next(2, 12);
-    var firstWordSyllableCount = usernameLength >= 6 ? (byte)new Random().Next(1, 2) : (byte)1;
-    var secondWordSyllableCount = usernameLength >= 6 ? (byte)new Random().Next(1, 2) : (byte)1;
+    var usernameLength = new Random().Next(2, 12);
+    var firstWordSyllableCount = usernameLength >= 6 ? new Random().Next(1, 2) : 1;
+    var secondWordSyllableCount = usernameLength >= 6 ? new Random().Next(1, 2) : 1;
     
     var username = usernameService.GetNewCombination(
         usernameLength,
