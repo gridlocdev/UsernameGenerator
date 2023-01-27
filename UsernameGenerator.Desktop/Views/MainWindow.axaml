@@ -18,32 +18,34 @@
 
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Name="UsernameTextBlock" Text="{Binding Username}" HorizontalAlignment="Center"
-                   FontWeight="ExtraBold" FontSize="24" />
+                   FontWeight="ExtraBold" FontSize="48" />
         <Separator Height="24" />
-        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 12" FontWeight="Bold"
+        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 16" FontWeight="Bold"
+                FontSize="24"
                 Content="Generate New Username"
                 HorizontalAlignment="Center" />
         <Separator Height="24" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
-            <Label Content="{Binding #UsernameLengthSlider.Value, StringFormat={}Username Length: {0}}"
-                   HorizontalAlignment="Center" />
+            <Label Content="{Binding #UsernameLengthSlider.Value, StringFormat={}Username Length: {0}}" FontSize="16" />
             <Slider Name="UsernameLengthSlider" Value="{Binding UsernameLength}"
-                    Minimum="2" Maximum="17" TickFrequency="1" IsSnapToTickEnabled="True" />
+                    Minimum="2" Maximum="17" TickFrequency="1" IsSnapToTickEnabled="True" FontSize="16" />
         </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
             <Label
-                Content="{Binding #FirstWordSyllableCountSlider.Value, StringFormat={}First Word Syllable Count: {0}}" />
+                Content="{Binding #FirstWordSyllableCountSlider.Value, StringFormat={}First Word Syllable Count: {0}}"
+                FontSize="16" />
             <Slider Name="FirstWordSyllableCountSlider" Value="{Binding FirstWordSyllableCount}"
                     Minimum="1" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
-                    Background="Blue" MaxWidth="100">
+                    MaxWidth="50">
             </Slider>
         </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
             <Label
-                Content="{Binding #SecondWordSyllableCountSlider.Value, StringFormat={}Second Word Syllable Count: {0}}" />
+                Content="{Binding #SecondWordSyllableCountSlider.Value, StringFormat={}Second Word Syllable Count: {0}}"
+                FontSize="16" />
             <Slider Name="SecondWordSyllableCountSlider" Value="{Binding SecondWordSyllableCount}"
                     Minimum="1" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
-                    Background="Blue" MaxWidth="100" />
+                    MaxWidth="50" />
         </StackPanel>
     </StackPanel>
 
