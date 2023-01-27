@@ -28,10 +28,10 @@ span::after {
     width: 0;
 }
 
-span::before{
-    margin-top:-6px;
+span::before {
+    margin-top: -6px;
 }
 
-span::after{
-    margin-bottom:-8px;
+span::after {
+    margin-bottom: -8px;
 }

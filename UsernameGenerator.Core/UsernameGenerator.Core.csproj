@@ -8,9 +8,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="Data\words-and-syllables.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+        <None Update="Data\words-and-syllables.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 
 </Project>

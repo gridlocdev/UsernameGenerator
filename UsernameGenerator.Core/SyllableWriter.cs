@@ -8,14 +8,16 @@ public class SyllableWriter
     public static void WriteToJson()
     {
         Console.WriteLine("Writing words.txt file to words-and-syllables.json...");
-        Word[] words = File.ReadAllLines("./Data/words.txt").Select(x => new Word{ Name = x, SyllableCount = x.GetSyllableCount()}).ToArray();
+        Word[] words = File.ReadAllLines("./Data/words.txt")
+            .Select(x => new Word { Name = x, SyllableCount = x.GetSyllableCount() }).ToArray();
 
         var jsonString = JsonSerializer.Serialize(words);
-        
+
         File.WriteAllText("./Data/words-and-syllables.json", jsonString);
 
         Console.WriteLine("Finished writing syllable json file successfully!");
     }
+
     public static async Task WriteToCsv()
     {
         Console.WriteLine("Writing words.txt file to words-and-syllables.txt...");
@@ -32,6 +34,7 @@ public class SyllableWriter
                 $"{words[i].ToTitleCase()},{words[i].GetSyllableCount()}"
             );
         }
+
         await File.WriteAllTextAsync("./Data/words-and-syllables.csv", csv.ToString());
 
         Console.WriteLine("Finished writing syllable csv file successfully!");

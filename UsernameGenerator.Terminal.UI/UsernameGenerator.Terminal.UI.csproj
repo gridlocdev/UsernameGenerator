@@ -8,11 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Terminal.Gui" Version="1.*" />
+        <PackageReference Include="Terminal.Gui" Version="1.*"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\UsernameGenerator.Core\UsernameGenerator.Core.csproj" />
+        <ProjectReference Include="..\UsernameGenerator.Core\UsernameGenerator.Core.csproj"/>
     </ItemGroup>
-    
+
 </Project>

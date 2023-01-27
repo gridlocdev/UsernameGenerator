@@ -13,7 +13,7 @@ do
     var usernameLength = new Random().Next(2, 12);
     var firstWordSyllableCount = usernameLength >= 6 ? new Random().Next(1, 2) : 1;
     var secondWordSyllableCount = usernameLength >= 6 ? new Random().Next(1, 2) : 1;
-    
+
     var username = usernameService.GetNewCombination(
         usernameLength,
         firstWordSyllableCount,
