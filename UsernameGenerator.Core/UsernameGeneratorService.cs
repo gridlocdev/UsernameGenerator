@@ -1,23 +1,38 @@
 using System.Diagnostics;
+using System.Reflection;
+using System.Text.Json;
 
 namespace UsernameGenerator.Core;
 
 public class UsernameGeneratorService
 {
-    private readonly Word[] _words;
+    private Word[] _words;
     private int ShortestWordLength { get; }
     private int LongestWordLength { get; }
     const int searchLockoutTimeSeconds = 3;
 
     public UsernameGeneratorService(
-        Word[] words
+        Word[]? words
     )
     {
-        _words = words;
+        _words = words ?? GetWordListFromBinaryPath();
+
+        if (_words is null)
+            throw new Exception("Word list either empty or not found at file location.");
 
         // Mostly all words in the English language are under 255 letters, 
         ShortestWordLength = _words.MinBy(w => w.Name.Length)!.Name.Length;
         LongestWordLength = _words.MaxBy(w => w.Name.Length)!.Name.Length;
+    }
+
+    private static Word[] GetWordListFromBinaryPath()
+    {
+        // When the project is built, the JSON data file is loaded into the compiled directory as content
+        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        
+        return JsonSerializer.Deserialize<Word[]>(
+            File.ReadAllText($"{assemblyPath}/Data/words-and-syllables.json")
+        );
     }
 
     public string GetNewCombination(int usernameLength = 9, int firstWordSyllableCount = 1,

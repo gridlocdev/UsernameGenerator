@@ -2,17 +2,7 @@
 using System.Text.Json;
 using UsernameGenerator.Core;
 
-// The word list is stored in the compiled directory
-var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-var words = JsonSerializer.Deserialize<Word[]>(
-    File.ReadAllText($"{assemblyPath}/Data/words-and-syllables.json")
-);
-
-if (words is null)
-    throw new Exception("Word list either empty or not found at file location.");
-
-var usernameService = new UsernameGeneratorService(words);
+var usernameService = new UsernameGeneratorService(null);
 
 Console.WriteLine(
     "Directions: Press \"Enter\" to advance to the next item, or any other key to stop.\n"

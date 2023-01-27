@@ -12,7 +12,7 @@ public class AppWindow : Window
 
     public AppWindow()
     {
-        _service = InitializeService();
+        _service = new UsernameGeneratorService(null);
         Title = "Username Generator (Ctrl + Q to quit)";
         ColorScheme = Colors.TopLevel;
         Width = Dim.Fill();
@@ -107,17 +107,5 @@ public class AppWindow : Window
         );
 
         Add(inputFrame, resultsFrame);
-    }
-
-    private static UsernameGeneratorService InitializeService()
-    {
-        // The word list is stored in the compiled directory
-        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        var words = JsonSerializer.Deserialize<Word[]>(
-            File.ReadAllText($"{assemblyPath}/Data/words-and-syllables.json")
-        );
-
-        return new UsernameGeneratorService(words);
     }
 }
