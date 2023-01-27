@@ -1,0 +1,46 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:UsernameGenerator.Desktop.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="UsernameGenerator.Desktop.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Username Generator"
+        Background="#222"
+        Foreground="White">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <TextBlock Name="UsernameTextBlock" Text="{Binding Username}" HorizontalAlignment="Center" FontSize="24" />
+        <Separator Height="24" />
+        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 12" FontWeight="Bold"
+                Content="Generate New Username"
+                HorizontalAlignment="Center" />
+        <Separator Height="24" />
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15" >
+            <Label Content="{Binding #UsernameLengthSlider.Value, StringFormat={}Username Length: {0}}" HorizontalAlignment="Center"/>
+            <Slider Name="UsernameLengthSlider" Value="{Binding UsernameLength}"
+                    Minimum="2" Maximum="17" TickFrequency="1" IsSnapToTickEnabled="True" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
+            <Label Content="{Binding #FirstWordSyllableCountSlider.Value, StringFormat={}First Word Syllable Count: {0}}" />
+            <Slider Name="FirstWordSyllableCountSlider" Value="{Binding FirstWordSyllableCount}"
+                    Minimum="1" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
+                    Background="Blue" MaxWidth="100">
+            </Slider>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
+            <Label Content="{Binding #SecondWordSyllableCountSlider.Value, StringFormat={}Second Word Syllable Count: {0}}" />
+            <Slider Name="SecondWordSyllableCountSlider" Value="{Binding SecondWordSyllableCount}"
+                    Minimum="1" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
+                    Background="Blue" MaxWidth="100" />
+        </StackPanel>
+    </StackPanel>
+
+</Window>

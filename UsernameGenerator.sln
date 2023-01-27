@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Web", "Us
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Terminal.UI", "UsernameGenerator.Terminal.UI\UsernameGenerator.Terminal.UI.csproj", "{2F7B034A-B0A8-4657-878F-2C40E9D18B11}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsernameGenerator.Desktop", "UsernameGenerator.Desktop\UsernameGenerator.Desktop.csproj", "{9F2E62C4-DCF4-4E1B-B291-B20D0239FC73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F7B034A-B0A8-4657-878F-2C40E9D18B11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F2E62C4-DCF4-4E1B-B291-B20D0239FC73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F2E62C4-DCF4-4E1B-B291-B20D0239FC73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F2E62C4-DCF4-4E1B-B291-B20D0239FC73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F2E62C4-DCF4-4E1B-B291-B20D0239FC73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
