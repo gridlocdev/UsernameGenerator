@@ -5,7 +5,7 @@ This is a set of applications to generate usernames in a title-case format (e.g.
 
 The default word data was sourced from [EddyDN's JSON version](https://github.com/eddydn/DictionaryDatabase) of the public domain [Online Plain Text English Dictionary](https://www.mso.anu.edu.au/~ralph/OPTED/).
 
-## Architecture
+## Solution Layout
 
 There are currently four types of available user interfaces: a basic Console app, a Terminal UI, a local web UI, and a Desktop app. All four of these share and reuse the same core library.
 
