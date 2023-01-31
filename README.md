@@ -7,26 +7,26 @@ The default word data was sourced from [EddyDN's JSON version](https://github.co
 
 ## Architecture
 
-There are currently four types of available user interfaces: a basic Console app, a Desktop app, a local web UI, and a Terminal UI. All four of these share and reuse the same core library.
+There are currently four types of available user interfaces: a basic Console app, a Terminal UI, a local web UI, and a Desktop app. All four of these share and reuse the same core library.
 
 ```mermaid
   flowchart
     Core["Core Library"]
     Console["Console App"]
-    Desktop["Desktop App"]
-    Web["Web App"]
     TUI["Terminal UI"]
+    Web["Web App"]
+    Desktop["Desktop App"]
 
-    Desktop & Console & Web & TUI --> Core  
+    Desktop & Console & Web & TUI --> Core
 ```
 
 ### Console
 
 <img src="https://user-images.githubusercontent.com/60323737/215591931-f534fb33-ea6d-4ea5-a5d0-3bab9b1abca2.png" width=75% />
+ 
+### Terminal UI
 
-### Desktop
-
-<img src="https://user-images.githubusercontent.com/60323737/215608150-c66e6bcb-ee67-4b00-a54f-4b6bbe17beea.png" width=75% />
+<img src="https://user-images.githubusercontent.com/60323737/215607741-abba7ad5-7f42-4a2f-9208-7addfcfe74c9.png" width=75% />
 
 ### Web
 
@@ -34,16 +34,15 @@ Dark Theme                |  Light Theme
 :-------------------------:|:-------------------------:
 ![image](https://user-images.githubusercontent.com/60323737/215607216-4d3215cb-83af-457b-9691-90a99c4b99b9.png) | ![image](https://user-images.githubusercontent.com/60323737/215607329-4b3de08f-20be-4d08-8a73-aeb641fb8b7b.png)
 
- 
-### Terminal UI
+### Desktop
 
-<img src="https://user-images.githubusercontent.com/60323737/215607741-abba7ad5-7f42-4a2f-9208-7addfcfe74c9.png" width=75% />
+<img src="https://user-images.githubusercontent.com/60323737/215608150-c66e6bcb-ee67-4b00-a54f-4b6bbe17beea.png" width=75% />
 
 ## Usage
 
-1. Install the .NET 6 SDK  
+1. Install the .NET 6 SDK
 2. Clone the repository locally
-3. Navigate to the cloned folder in the filesystem and open the project UI you would like to run (Basic Console, Desktop, Local Web, Terminal User Interface)
+3. Navigate to the cloned folder in the filesystem and open the project UI you would like to run (Basic Console, Terminal UI, Local Web, Desktop)
 3. Run `dotnet run` in a terminal
 
 ## Using your own Data
