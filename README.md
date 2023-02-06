@@ -1,7 +1,7 @@
 # Username Generator
 ## Overview
 
-This is a set of applications to generate usernames in a title-case format (e.g. "WordWord") with greater customization such as character count and number of syllables per word.
+This repository contains a set of user interfaces to randomly generate customized usernames. These usernames are collated in a title-case format (e.g. "WordWord") with greater customization such as character count and number of syllables per word.
 
 The default word data was sourced from [EddyDN's JSON version](https://github.com/eddydn/DictionaryDatabase) of the public domain [Online Plain Text English Dictionary](https://www.mso.anu.edu.au/~ralph/OPTED/).
 
@@ -30,9 +30,7 @@ There are currently four types of available user interfaces: a basic Console app
 
 ### Web
 
-Dark Theme                |  Light Theme
-:-------------------------:|:-------------------------:
-![image](https://user-images.githubusercontent.com/60323737/215607216-4d3215cb-83af-457b-9691-90a99c4b99b9.png) | ![image](https://user-images.githubusercontent.com/60323737/215607329-4b3de08f-20be-4d08-8a73-aeb641fb8b7b.png)
+<img src="https://user-images.githubusercontent.com/60323737/215607216-4d3215cb-83af-457b-9691-90a99c4b99b9.png" width=75% />
 
 ### Desktop
 
