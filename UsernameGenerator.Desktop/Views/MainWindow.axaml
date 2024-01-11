@@ -19,12 +19,10 @@
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Name="UsernameTextBlock" Text="{Binding Username}" HorizontalAlignment="Center"
                    FontWeight="ExtraBold" FontSize="48" />
-        <Separator Height="24" />
-        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 16" FontWeight="Bold"
+        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 16" Margin="24" FontWeight="Bold"
                 FontSize="24"
                 Content="Generate New Username"
                 HorizontalAlignment="Center" />
-        <Separator Height="24" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
             <Label Content="{Binding #UsernameLengthSlider.Value, StringFormat={}Username Length: {0}}" FontSize="16" />
             <Slider Name="UsernameLengthSlider" Value="{Binding UsernameLength}"
