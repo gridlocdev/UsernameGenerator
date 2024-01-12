@@ -3,9 +3,8 @@
         xmlns:vm="using:UsernameGenerator.Desktop.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="UsernameGenerator.Desktop.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+Width="800" Height="600"        Icon="/Assets/avalonia-logo.ico"
         Title="Username Generator"
         Background="#222"
         Foreground="White">
