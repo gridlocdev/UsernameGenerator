@@ -15,35 +15,28 @@ Width="800" Height="600"        Icon="/Assets/avalonia-logo.ico"
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="24" Spacing="24">
         <TextBlock Name="UsernameTextBlock" Text="{Binding Username}" HorizontalAlignment="Center"
-                   FontWeight="ExtraBold" FontSize="48" />
-        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 16" Margin="24" FontWeight="Bold"
-                FontSize="24"
-                Content="Generate New Username"
-                HorizontalAlignment="Center" />
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
-            <Label Content="{Binding #UsernameLengthSlider.Value, StringFormat={}Username Length: {0}}" FontSize="16" />
-            <Slider Name="UsernameLengthSlider" Value="{Binding UsernameLength}"
-                    Minimum="2" Maximum="17" TickFrequency="1" IsSnapToTickEnabled="True" FontSize="16" />
+                   FontWeight="Bold" FontSize="48" LetterSpacing="1.5" />
+        <StackPanel Margin="48 0" Spacing="16">
+            <StackPanel>
+                <Label Content="Username Length:" FontSize="16" />
+                <NumericUpDown Name="UsernameLengthNumericUpDown" Value="{Binding UsernameLength}" Minimum="2"
+                               Maximum="17" FontSize="16" Increment="1" Cursor="Hand" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="First Word Syllable Count:" FontSize="16" />
+                <NumericUpDown Name="FirstWordSyllableCountNumericUpDown" Value="{Binding FirstWordSyllableCount}"
+                               Minimum="1" Maximum="2" Increment="1" Cursor="Hand" />
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Second Word Syllable Count:" FontSize="16" />
+                <NumericUpDown Name="SecondWordSyllableCountNumericUpDown"
+                               Value="{Binding SecondWordSyllableCount}"
+                               Minimum="1" Maximum="2" Increment="1" Cursor="Hand" />
+            </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
-            <Label
-                Content="{Binding #FirstWordSyllableCountSlider.Value, StringFormat={}First Word Syllable Count: {0}}"
-                FontSize="16" />
-            <Slider Name="FirstWordSyllableCountSlider" Value="{Binding FirstWordSyllableCount}"
-                    Minimum="1" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
-                    MaxWidth="50">
-            </Slider>
-        </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Spacing="-15">
-            <Label
-                Content="{Binding #SecondWordSyllableCountSlider.Value, StringFormat={}Second Word Syllable Count: {0}}"
-                FontSize="16" />
-            <Slider Name="SecondWordSyllableCountSlider" Value="{Binding SecondWordSyllableCount}"
-                    Minimum="1" Maximum="2" TickFrequency="1" IsSnapToTickEnabled="True"
-                    MaxWidth="50" />
-        </StackPanel>
+        <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 16" FontWeight="Bold"
+                FontSize="24" Content="Generate New Username" Cursor="Hand"/>
     </StackPanel>
-
 </Window>
