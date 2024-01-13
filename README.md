@@ -6,10 +6,6 @@ This repository contains a set of user interfaces to randomly generate customize
 
 > **Note for using filters**: Filtering by syllable counts may occasionally be off by one, as English is a language that often doesn't play by a consistent set of phonetic rules. This makes it tricky to detect the number of syllables using an algorithm.
 
-### Using your own Data
-
-If you'd like to use your own word list, the core library also includes a class titled `SyllableWriter` which contains a pair of methods that can be used to generate syllable counts from an existing word list.
-
 ### Applications
 
 #### Console
@@ -45,6 +41,28 @@ If you'd like to use your own word list, the core library also includes a class 
     cd UsernameGenerator.Console
     ```
 3. Run the application
+    ```
+    dotnet run
+    ```
+
+### Using your own word list
+
+1. Create a fork of the project
+2. In the `UsernameGenerator.Core` directory, edit the file named `./Data.words.txt` to include your own word list
+3. Create a new Console app project
+4. In the `csproj` file, add a reference to the `UsernameGenerator.Core` project
+    ```XML
+    <ItemGroup>
+      <ProjectReference Include="..\UsernameGenerator.Core\UsernameGenerator.Core.csproj" />
+    </ItemGroup>
+    ```
+5. Replace the contents of `Program.cs` with the following
+    ```C#
+    using UsernameGenerator.Core;
+
+    SyllableWriter.WriteToJson();
+    ```
+6. Run the new Console app
     ```
     dotnet run
     ```
