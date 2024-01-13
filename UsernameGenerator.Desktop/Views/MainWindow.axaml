@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="UsernameGenerator.Desktop.Views.MainWindow"
-Width="800" Height="600"        Icon="/Assets/avalonia-logo.ico"
+        Width="800" Height="600"
+        Icon="/Assets/avalonia-logo.ico"
         Title="Username Generator"
         Background="#222"
         Foreground="White">
@@ -20,23 +21,31 @@ Width="800" Height="600"        Icon="/Assets/avalonia-logo.ico"
                    FontWeight="Bold" FontSize="48" LetterSpacing="1.5" />
         <StackPanel Margin="48 0" Spacing="16">
             <StackPanel>
-                <Label Content="Username Length:" FontSize="16" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <CheckBox Name="UsernameLengthInputEnabledCheckBox" IsChecked="{Binding !UsernameLengthInputEnabled}" />
+                    <Label Content="Username Length:" FontSize="16"  VerticalAlignment="Center"/>
+                </StackPanel>
                 <NumericUpDown Name="UsernameLengthNumericUpDown" Value="{Binding UsernameLength}" Minimum="2"
-                               Maximum="17" FontSize="16" Increment="1" Cursor="Hand" />
+                               Maximum="17" FontSize="16" Increment="1" Cursor="Hand" IsEnabled="{Binding !UsernameLengthInputEnabled}"/>
             </StackPanel>
             <StackPanel>
-                <Label Content="First Word Syllable Count:" FontSize="16" />
-                <NumericUpDown Name="FirstWordSyllableCountNumericUpDown" Value="{Binding FirstWordSyllableCount}"
-                               Minimum="1" Maximum="2" Increment="1" Cursor="Hand" />
-            </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <CheckBox Name="FirstWordSyllableCountInputEnabledCheckBox" IsChecked="{Binding !FirstWordSyllableCountInputEnabled}" />
+                    <Label Content="First Word Syllable Count:" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </StackPanel>
+                <NumericUpDown Name="FirstWordSyllableCountNumericUpDown" Value="{Binding FirstWordSyllableCount}" Minimum="1"
+                               Maximum="2" FontSize="16" Increment="1" Cursor="Hand" IsEnabled="{Binding !FirstWordSyllableCountInputEnabled}"/>
+            </StackPanel>            
             <StackPanel>
-                <Label Content="Second Word Syllable Count:" FontSize="16" />
-                <NumericUpDown Name="SecondWordSyllableCountNumericUpDown"
-                               Value="{Binding SecondWordSyllableCount}"
-                               Minimum="1" Maximum="2" Increment="1" Cursor="Hand" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <CheckBox Name="SecondWordSyllableCountInputEnabledCheckBox" IsChecked="{Binding !SecondWordSyllableCountInputEnabled}" />
+                    <Label Content="Second Word Syllable Count:" FontSize="16"  VerticalAlignment="Center"/>
+                </StackPanel>
+                <NumericUpDown Name="SecondWordSyllableCountNumericUpDown" Value="{Binding SecondWordSyllableCount}" Minimum="1"
+                               Maximum="2" FontSize="16" Increment="1" Cursor="Hand" IsEnabled="{Binding !SecondWordSyllableCountInputEnabled}"/>
             </StackPanel>
         </StackPanel>
         <Button Name="Button" Command="{Binding Button_OnClick}" Padding="24 16" FontWeight="Bold"
-                FontSize="24" Content="Generate New Username" Cursor="Hand"/>
+                FontSize="24" Content="Generate New Username" Cursor="Hand" />
     </StackPanel>
 </Window>
