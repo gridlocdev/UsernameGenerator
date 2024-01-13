@@ -47,22 +47,23 @@ This repository contains a set of user interfaces to randomly generate customize
 
 ### Using your own word list
 
-1. Create a fork of the project
-2. In the `UsernameGenerator.Core` directory, edit the file named `./Data.words.txt` to include your own word list
-3. Create a new Console app project
-4. In the `csproj` file, add a reference to the `UsernameGenerator.Core` project
+1. Create a fork of this repository
+2. Clone your new fork of the repository down to a folder on your local machine
+3. In the `UsernameGenerator.Core` directory, edit the file named `./Data.words.txt` to include your own word list
+4. Create a new Console app project
+5. In the `csproj` file, add a reference to the `UsernameGenerator.Core` project
     ```XML
     <ItemGroup>
       <ProjectReference Include="..\UsernameGenerator.Core\UsernameGenerator.Core.csproj" />
     </ItemGroup>
     ```
-5. Replace the contents of `Program.cs` with the following
+6. Replace the contents of `Program.cs` with the following
     ```C#
     using UsernameGenerator.Core;
 
     SyllableWriter.WriteToJson();
     ```
-6. Run the new Console app
+7. Run the new Console app
     ```
     dotnet run
     ```
