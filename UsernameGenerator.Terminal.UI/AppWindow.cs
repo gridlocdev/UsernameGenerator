@@ -1,84 +1,102 @@
-using System.Reflection;
-using System.Text.Json;
 using Terminal.Gui;
 using UsernameGenerator.Core;
 
-public class AppWindow : Window
+namespace UsernameGenerator.Terminal.UI;
+
+public sealed class AppWindow : Window
 {
-    private UsernameGeneratorService _service;
     private int _usernameLength = 9;
     private int _firstWordSyllableCount = 1;
     private int _secondWordSyllableCount = 1;
+    private bool _usernameLengthInputEnabled;
+    private bool _firstWordSyllableCountInputEnabled;
+    private bool _secondWordSyllableCountInputEnabled;
 
     public AppWindow()
     {
-        _service = new UsernameGeneratorService(null);
+        var service = new UsernameGeneratorService(null);
         Title = "Username Generator (Ctrl + Q to quit)";
-        ColorScheme = Colors.TopLevel;
+        ColorScheme = Colors.ColorSchemes["TopLevel"];
         Width = Dim.Fill();
         Height = Dim.Fill();
 
-        var lengthLabel = new Label("Username Length: ")
+        // Set positions of controls
+        Label usernameLengthLabel = new("Username Length: ")
         {
-            X = 1,
+            X = 3,
             Y = 1,
         };
-        var lengthComboBox = new ComboBox(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 })
+        CheckBox usernameLengthInputEnabledCheckbox = new()
         {
-            SelectedItem = 8,
-            X = 1,
-            Y = 2,
-            Width = Dim.Percent(50),
+            X = usernameLengthLabel.X - 2,
+            Y = usernameLengthLabel.Y,
+            Checked = _usernameLengthInputEnabled,
         };
-        lengthComboBox.SelectedItemChanged += args => { _usernameLength = args.Item + 1; };
+        ComboBox usernameLengthComboBox =
+            new(new List<int> { 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 })
+            {
+                X = usernameLengthLabel.X,
+                Y = usernameLengthLabel.Y + 1,
+                Width = Dim.Percent(50),
+                SelectedItem = 8,
+                Enabled = _usernameLengthInputEnabled,
+            };
 
-        var firstSyllableCountLabel = new Label("First Word Syllable Count: ")
+        Label firstWordSyllableCountLabel = new("First Word Syllable Count: ")
         {
-            X = 1,
+            X = 3,
             Y = 4,
         };
-        var firstSyllableCountComboBox = new ComboBox(new List<int> { 1, 2 })
+        CheckBox firstWordSyllableCountInputEnabledCheckbox = new()
         {
-            SelectedItem = 0,
-            X = 1,
-            Y = 5,
-            Width = Dim.Percent(50),
+            X = firstWordSyllableCountLabel.X - 2,
+            Y = firstWordSyllableCountLabel.Y,
+            Checked = _firstWordSyllableCountInputEnabled,
         };
-        firstSyllableCountComboBox.SelectedItemChanged += args => { _firstWordSyllableCount = args.Item + 1; };
-
-        var secondSyllableCountLabel = new Label("Second Word Syllable Count: ")
+        ComboBox firstWordSyllableCountComboBox = new(new List<int> { 1, 2 })
         {
-            X = 1,
+            X = firstWordSyllableCountLabel.X,
+            Y = firstWordSyllableCountLabel.Y + 1,
+            Width = Dim.Percent(50),
+            SelectedItem = 0,
+            Enabled = _firstWordSyllableCountInputEnabled,
+        };
+
+        Label secondWordSyllableCountLabel = new("Second Word Syllable Count: ")
+        {
+            X = 3,
             Y = 7,
         };
-        var secondSyllableCountComboBox = new ComboBox(new List<int> { 1, 2 })
+        CheckBox secondWordSyllableCountInputEnabledCheckbox = new()
         {
-            SelectedItem = 0,
-            X = 1,
-            Y = 8,
-            Width = Dim.Percent(50),
+            X = secondWordSyllableCountLabel.X - 2,
+            Y = secondWordSyllableCountLabel.Y,
+            Checked = _secondWordSyllableCountInputEnabled,
         };
-        secondSyllableCountComboBox.SelectedItemChanged += args => { _secondWordSyllableCount = args.Item + 1; };
+        ComboBox secondWordSyllableCountComboBox = new(new List<int> { 1, 2 })
+        {
+            X = secondWordSyllableCountLabel.X,
+            Y = secondWordSyllableCountLabel.Y + 1,
+            Width = Dim.Percent(50),
+            SelectedItem = 0,
+            Enabled = _secondWordSyllableCountInputEnabled,
+        };
 
-        var usernameDisplayLabel = new Label("          ")
+        Label usernameDisplayLabel = new("          ")
         {
             X = Pos.Center(),
             Y = Pos.Center(),
             TextAlignment = TextAlignment.Centered,
         };
 
-        var newUsernameButton = new Button("Generate New Username", true)
+        Button newUsernameButton = new("Generate New Username", true)
         {
             X = Pos.Center(),
             Y = 11,
         };
-        newUsernameButton.Clicked += () =>
-        {
-            usernameDisplayLabel.Text = _service.GetNewCombination(_usernameLength, _firstWordSyllableCount,
-                _secondWordSyllableCount);
-        };
 
-        var inputFrame = new FrameView("Filters")
+        // Initialize frames
+        FrameView inputFrame = new("Filters")
         {
             X = 1,
             Y = 1,
@@ -86,16 +104,19 @@ public class AppWindow : Window
             Height = Dim.Fill()
         };
         inputFrame.Add(
-            lengthLabel,
-            lengthComboBox,
-            firstSyllableCountLabel,
-            firstSyllableCountComboBox,
-            secondSyllableCountLabel,
-            secondSyllableCountComboBox,
-            newUsernameButton
+            usernameLengthLabel,
+            usernameLengthComboBox,
+            firstWordSyllableCountLabel,
+            firstWordSyllableCountComboBox,
+            secondWordSyllableCountLabel,
+            secondWordSyllableCountComboBox,
+            newUsernameButton,
+            usernameLengthInputEnabledCheckbox,
+            firstWordSyllableCountInputEnabledCheckbox,
+            secondWordSyllableCountInputEnabledCheckbox
         );
 
-        var resultsFrame = new FrameView("Result")
+        FrameView resultsFrame = new("Result")
         {
             X = Pos.Right(inputFrame) + 1,
             Y = 1,
@@ -107,5 +128,42 @@ public class AppWindow : Window
         );
 
         Add(inputFrame, resultsFrame);
+
+        // Set event handlers
+        usernameLengthComboBox.SelectedItemChanged += (s, e) => { _usernameLength = Convert.ToInt32(e.Value); };
+        usernameLengthInputEnabledCheckbox.Toggled += (s, e) =>
+        {
+            if (e.NewValue == null) return;
+
+            _usernameLengthInputEnabled = e.NewValue.Value;
+            usernameLengthComboBox.Enabled = _usernameLengthInputEnabled;
+        };
+
+        firstWordSyllableCountComboBox.SelectedItemChanged += (s, e) => { _firstWordSyllableCount = Convert.ToInt32(e.Value); };
+        firstWordSyllableCountInputEnabledCheckbox.Toggled += (s, e) =>
+        {
+            if (e.NewValue == null) return;
+
+            _firstWordSyllableCountInputEnabled = e.NewValue.Value;
+            firstWordSyllableCountComboBox.Enabled = _firstWordSyllableCountInputEnabled;
+        };
+
+        secondWordSyllableCountComboBox.SelectedItemChanged += (s, e) => { _secondWordSyllableCount = Convert.ToInt32(e.Value); };
+        secondWordSyllableCountInputEnabledCheckbox.Toggled += (s, e) =>
+        {
+            if (e.NewValue == null) return;
+
+            _secondWordSyllableCountInputEnabled = e.NewValue.Value;
+            secondWordSyllableCountComboBox.Enabled = _secondWordSyllableCountInputEnabled;
+        };
+
+        newUsernameButton.Clicked += (s, e) =>
+        {
+            usernameDisplayLabel.Text = service.GetNewCombination(
+                _usernameLengthInputEnabled is true ? _usernameLength : null,
+                _firstWordSyllableCountInputEnabled is true ? _firstWordSyllableCount : null,
+                _secondWordSyllableCountInputEnabled is true ? _secondWordSyllableCount : null
+            );
+        };
     }
 }

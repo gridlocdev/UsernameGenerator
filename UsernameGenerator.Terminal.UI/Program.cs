@@ -1,4 +1,5 @@
 ﻿using Terminal.Gui;
+using UsernameGenerator.Terminal.UI;
 
 Application.Init();
 
