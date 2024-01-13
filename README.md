@@ -38,7 +38,7 @@ There are currently four types of available user interfaces: a basic Console app
 
 ## Usage
 
-1. Install the .NET 6 SDK
+1. Install the .NET 8 SDK
 2. Clone the repository locally
 3. Navigate to the cloned folder in the filesystem and open the project UI you would like to run (Basic Console, Terminal UI, Local Web, Desktop)
 3. Run `dotnet run` in a terminal
