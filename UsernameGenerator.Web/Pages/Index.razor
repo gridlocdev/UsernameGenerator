@@ -13,31 +13,38 @@
                 @username
             </span>
 
-            <button disabled="@isLoadingData" @onclick="async () => await GetNewUsername()">
-                Generate New Username
-            </button>
-
             <span class="message-label">@errorMessage</span>
 
         </div>
 
         <div class="filter-controls">
             <section class="form-combo">
-                <label for="numberOfLettersInput">Letters</label>
+                <div class="form-checkbox-label">
+                    <input type="checkbox" @onchange=@(() => usernameInputDisabled = !usernameInputDisabled)/>
+                    <label for="numberOfLettersInput">Username Length: </label>
+                </div>
                 <input id="numberOfLettersInput" type="number" min="2" max="21" @bind="usernameLength" placeholder="Number of Letters" disabled="@usernameInputDisabled"/>
-                <input type="checkbox" @onchange=@(() => usernameInputDisabled = !usernameInputDisabled)/>
             </section>
             <section class="form-combo">
-                <label for="firstWordSyllableCountInput">Word 1 Syllable Count</label>
+                <div class="form-checkbox-label">
+                    <input type="checkbox" @onchange=@(() => firstWordSyllableCountInputDisabled = !firstWordSyllableCountInputDisabled)/>
+                    <label for="firstWordSyllableCountInput">First Word Syllable Count: </label>
+                </div>
                 <input id="firstWordSyllableCountInput" type="number" min="1" max="4" @bind="firstWordSyllableCount" placeholder="Number of Syllables" disabled="@firstWordSyllableCountInputDisabled"/>
-                <input type="checkbox" @onchange=@(() => firstWordSyllableCountInputDisabled = !firstWordSyllableCountInputDisabled)/>
             </section>
             <section class="form-combo">
-                <label for="secondWordSyllableCountInput">Word 2 Syllable Count</label>
+                <div class="form-checkbox-label">
+                    <input type="checkbox" @onchange=@(() => secondWordSyllableCountInputDisabled = !secondWordSyllableCountInputDisabled)/>
+                    <label for="secondWordSyllableCountInput">Second Word Syllable Count: </label>
+                </div>
                 <input id="secondWordSyllableCountInput" type="number" min="1" max="4" @bind="secondWordSyllableCount" placeholder="Number of Syllables" disabled="@secondWordSyllableCountInputDisabled"/>
-                <input type="checkbox" @onchange=@(() => secondWordSyllableCountInputDisabled = !secondWordSyllableCountInputDisabled)/>
             </section>
         </div>
+
+        <button disabled="@isLoadingData" @onclick="async () => await GetNewUsername()">
+            Generate New Username
+        </button>
+
     </div>
 }
 else
